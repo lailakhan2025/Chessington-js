@@ -1,5 +1,6 @@
 import Player from '../player';
 import Square from '../square';
+import King from './king';
 import Piece from './piece';
 
 export default class Pawn extends Piece {
@@ -16,59 +17,45 @@ export default class Pawn extends Piece {
         }
         this.player===Player.WHITE? direction=1:direction=-1;
 
-            if(!board.getPiece(Square.at(location.row+(1*direction),location.col))){
-                if(!firstmove){
-                return [Square.at(location.row+(1*direction),location.col)];}
-                else{
-                    if(!board.getPiece(Square.at(location.row+(2*direction),location.col))){
-                        return [Square.at(location.row+(1*direction),location.col),Square.at(location.row+(2*direction),location.col)];
+        
+      if(location.row+(1*direction)>=0&&location.row+(1*direction)<8){  
+            if(board.getPiece(Square.at(location.row+(1*direction),location.col+1)) && board.getPiece(Square.at(location.row+(1*direction),location.col+1)).player!=this.player&& !(board.getPiece(Square.at(location.row+(1*direction),location.col+1)) instanceof King)){
+                  return [Square.at(location.row+(1*direction),location.col+1)];    
+            }
+            else if (board.getPiece(Square.at(location.row+(1*direction),location.col-1))&&board.getPiece(Square.at(location.row+(1*direction),location.col-1)).player!=this.player && !(board.getPiece(Square.at(location.row+(1*direction),location.col-1))instanceof King))
+            { 
+                return [Square.at(location.row+(1*direction),location.col-1)];
+            }
+            else{
+                    if(!board.getPiece(Square.at(location.row+(1*direction),location.col))){
+                                if(!firstmove){
+                                return [Square.at(location.row+(1*direction),location.col)];
+                                }
+                                else{
+                                        if(!board.getPiece(Square.at(location.row+(2*direction),location.col))){
+                                                return [Square.at(location.row+(1*direction),location.col),Square.at(location.row+(2*direction),location.col)];
+                                        }
+                                        else{
+                                                return [Square.at(location.row+(1*direction),location.col)];
+                                            }
+                                    }
                     }
                     else{
-                        return [Square.at(location.row+(1*direction),location.col)];}
-                    }
-            }
-            else{
-                return [];           
-            }
-            
-            }
+                            return [];          
+                        }
+                }
         }
-
-
-
-
-
-       /* if (this.player === Player.WHITE){
-            if(location.row===1) {
-                if(board.getPiece(Square.at(location.row+2,location.col))===undefined){
-                    return [Square.at(location.row+2,location.col)];
-                }
-                else if(board.getPiece(Square.at(location.row+1,location.col))===undefined){
-                return [Square.at(location.row+1,location.col)];
-                }
+        else{
+            return [];
             }
-            else{
-                if(board.getPiece(Square.at(location.row+1,location.col))===undefined){
-                    return [Square.at(location.row+1,location.col)];
-                }
-            }
-        }
-        else {  
-            if(location.row===6) {
-                if(board.getPiece(Square.at(location.row-2,location.col))===undefined){
-                    return [Square.at(location.row-2,location.col)];
-                }
-                else if(board.getPiece(Square.at(location.row-1,location.col))===undefined){
-                return [Square.at(location.row-1,location.col)];
-                }
-            }
-            else{
-                if(board.getPiece(Square.at(location.row-1,location.col)===undefined)){
-                    return [Square.at(location.row-1,location.col)];
-                }
-
-            }
-        }
-    
+        
     }
-}*/
+}
+
+
+
+
+
+
+   
+        
