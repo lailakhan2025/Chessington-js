@@ -1,5 +1,6 @@
 import Piece from "./piece";
 import Square from "../square";
+import King from "./king";
 
 export default class Bishop extends Piece {
   constructor(player) {
@@ -17,7 +18,7 @@ export default class Bishop extends Piece {
     ) {
       const piece = board.getPiece(Square.at(row, col));
       if (piece) {
-        if (piece.player !== this.player) {
+        if (piece.player !== this.player && !(piece instanceof King)) {
           moves.push(Square.at(row, col));
         }
         break;
@@ -32,7 +33,7 @@ export default class Bishop extends Piece {
     ) {
       const piece = board.getPiece(Square.at(row, col));
       if (piece) {
-        if (piece.player !== this.player) {
+        if (piece.player !== this.player && !(piece instanceof King)) {
           moves.push(Square.at(row, col));
         }
         break;
@@ -47,7 +48,7 @@ export default class Bishop extends Piece {
     ) {
       const piece = board.getPiece(Square.at(row, col));
       if (piece) {
-        if (piece.player !== this.player) {
+        if (piece.player !== this.player && !(piece instanceof King)) {
           moves.push(Square.at(row, col));
         }
         break;
@@ -62,7 +63,7 @@ export default class Bishop extends Piece {
     ) {
       const piece = board.getPiece(Square.at(row, col));
       if (piece) {
-        if (piece.player !== this.player) {
+        if (piece.player !== this.player && !(piece instanceof King)) {
           moves.push(Square.at(row, col));
         }
         break;
